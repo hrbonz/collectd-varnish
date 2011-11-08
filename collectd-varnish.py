@@ -2,7 +2,27 @@
 import collectd
 import socket
 
-instances = {}
+# stats collection defaults, see
+# http://collectd.org/wiki/index.php/Plugin:Varnish#Available_statistics
+collects = {
+    'backend': True,
+    'cache': True,
+    'connections': True,
+    'esi': False,
+    'fetch': False,
+    'hcb': False,
+    'shm': True,
+    'sm': False,
+    'sma': False,
+    'sms': False,
+    'totals': False,
+    'uptime': False,
+    'workers': False,
+}
+         
+instances = {
+    '': dict(collects),
+}
 
 # --
 # config
@@ -25,37 +45,28 @@ def config(conf):
         else:
             instance = ''
 
-        # stats collection defaults, see
-        # http://collectd.org/wiki/index.php/Plugin:Varnish#Available_statistics
-        collects = {
-            'backend': True,
-            'cache': True,
-            'connections': True,
-            'esi': False,
-            'fetch': False,
-            'hcb': False,
-            'shm': True,
-            'sm': False,
-            'sma': False,
-            'sms': False,
-            'totals': False,
-            'uptime': False,
-            'workers': False,
-        }
-         
+        _collects = dict(collects)
         # get the stats to collect
         for child in node.children:
             if child.key.find("Collect") == 0:
                 collection = child.key[7:].lower()
                 if collection in collects:
-                    collects[collection] = True
+                    _collects[collection] = True
                 else:
                     collectd.warning("%s: Ignoring unknown configuration option (%s)" % (__name__, child.key))
             else:
                 collectd.warning("%s: Ignoring unknown configuration option (%s)" % (__name__, child.key))
 
-        # add this instance to the list of instances
-        instances[instance] = collects
+        # add this instance to the dict of instances
+        instances[instance] = _collects
+
+# --
+# init
+# initialisation function
+def init():
+    pass
 
 # configuration callback
 collectd.register_config(config)
+# init callback
+collectd.register_init(init)
