@@ -46,7 +46,7 @@ The configuration of the plugin follows collectd's varnish plugin in a pythonic 
 
 The default available statistics follow the [varnish plugin defaults](http://collectd.org/wiki/index.php/Plugin:Varnish#Available_statistics).
 
-If no Instance name is given, get the default instance.
+If no Instance name is given, get the default instance (varnish uses hostname as default).
 
 For a very minimalistic configuration you can use the following, this configuration will use all the defaults :
 
@@ -69,7 +69,7 @@ For a very minimalistic configuration you can use the following, this configurat
 The different options available are as follow :
 
 * `varnishstatBin`: specify the path of `varnishstat(1)` binary, defaults to `/usr/bin/varnishstat`. Context: Module.
-* `Instance `<name>`: create an instance block per varnish vcl instance to monitor. The name of the instance can be empty (considered as default instance). Context: Module.
+* `Instance `<name>`: create an instance block per varnish instance to monitor. The name of the instance can be empty (considered as default instance). Context: Module.
 * `CollectBackend <bool>` or `Backend <bool>`: Back-end connection statistics, such as successful, reused, and closed connections. Default: True. Context: Instance.
 * `CollectCache <bool>` or `Cache <bool>`: Cache hits and misses. Default: True. Context: Instance.
 * `CollectConnections <bool>` or `Connections <bool>`: Number of client connections received, accepted and dropped. Default: True. Context: Instance.
