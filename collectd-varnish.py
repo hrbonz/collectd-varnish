@@ -40,7 +40,7 @@ def config(conf):
             varnishstat = node.values[0]
             continue
 
-        if node.key == "Instance"
+        if node.key == "Instance":
             # if the instance is named, get the first given name
             if len(node.values):
                 if len(node.values) > 1:
