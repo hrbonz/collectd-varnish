@@ -47,6 +47,23 @@ The default available statistics follow the [varnish plugin defaults](http://col
 
 If no Instance name is given, get the default instance.
 
+For a very minimalistic configuration you can use the following, this configuration will use all the defaults :
+
+    <LoadPlugin python>
+        Globals true
+    </LoadPlugin>
+    # ...
+    <Plugin python>
+        ModulePath "/path/to/your/python/modules"
+        LogTraces true
+        Import "collectd-varnish"
+
+        <Module "collectd-varnish">
+            <Instance>
+                # comment to avoid parsing error
+            </Instance>
+        </Module>
+    </Plugin>
 
 References
 ----------
