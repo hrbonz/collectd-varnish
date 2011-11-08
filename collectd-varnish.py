@@ -19,9 +19,19 @@ def config(conf):
             instance = ''
 
         collects = {
+            'backend': True,
+            'cache': True,
+            'connections': True,
+            'esi': False,
+            'fetch': False,
+            'hcb': False,
+            'shm': True,
+            'sm': False,
+            'sma': False,
+            'sms': False,
+            'totals': False,
             'uptime': False,
-            'cache': False,
-            'connections': False,
+            'workers': False,
         }
          
         for child in node.children:
