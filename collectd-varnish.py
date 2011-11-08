@@ -35,39 +35,42 @@ def config(conf):
     global varnishstat, instances
     # get through the nodes under <Module "...">
     for node in conf.children:
-        # unknown configuration node
-        if node.key != "Instance" and node.key != "varnishstatBin":
-            collectd.warning("%s: Ignoring unknown node type (%s)" % (__name__, node.key))
-            continue
-
         # change varnishstat binary path
         if node.key == "varnishstatBin":
             varnishstat = node.values[0]
             continue
 
-        # if the instance is named, get the first given name
-        if len(node.values):
-            if len(node.values) > 1:
-                collectd.info("%s: Ignoring extra instance names (%s)" % (__name__, ", ".join(node.values[1:])) )
-            instance = node.values[0]
-        # else register an empty name instance
-        else:
-            instance = ''
+        if node.key == "Instance"
+            # if the instance is named, get the first given name
+            if len(node.values):
+                if len(node.values) > 1:
+                    collectd.info("%s: Ignoring extra instance names (%s)" % (__name__, ", ".join(node.values[1:])) )
+                instance = node.values[0]
+            # else register an empty name instance
+            else:
+                instance = ''
+    
+            _collects = dict(collects)
+            # get the stats to collect
+            for child in node.children:
+                # get the stat collection name
+                if child.key.find("Collect") == 0:
+                    collection = child.key[7:].lower()
+                else:
+                    collection = child.key.lower()
 
-        _collects = dict(collects)
-        # get the stats to collect
-        for child in node.children:
-            if child.key.find("Collect") == 0:
-                collection = child.key[7:].lower()
+                # check if this collection is known
                 if collection in collects:
                     _collects[collection] = True
                 else:
                     collectd.warning("%s: Ignoring unknown configuration option (%s)" % (__name__, child.key))
-            else:
-                collectd.warning("%s: Ignoring unknown configuration option (%s)" % (__name__, child.key))
+    
+            # add this instance to the dict of instances
+            instances[instance] = _collects
+            continue
 
-        # add this instance to the dict of instances
-        instances[instance] = _collects
+        # unknown configuration node
+        collectd.warning("%s: Ignoring unknown node type (%s)" % (__name__, node.key))
 
 # --
 # init

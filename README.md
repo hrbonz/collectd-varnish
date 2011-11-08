@@ -70,19 +70,19 @@ The different options available are as follow :
 
 * `varnishstatBin`: specify the path of `varnishstat(1)` binary, defaults to `/usr/bin/varnishstat`. Context: Module.
 * `Instance `<name>`: create an instance block per varnish vcl instance to monitor. The name of the instance can be empty (considered as default instance). Context: Module.
-* `CollectBackend <bool>`: Back-end connection statistics, such as successful, reused, and closed connections. Default: True. Context: Instance.
-* `CollectCache`: Cache hits and misses. Default: True. Context: Instance.
-* `CollectConnections`: Number of client connections received, accepted and dropped. Default: True. Context: Instance.
-* `CollectESI`: Edge Side Includes (ESI) parse statistics. Default: False. Context: Instance.
-* `CollectFetch`: Statistics about fetches (HTTP requests sent to the backend). Default: False. Context: Instance.
-* `CollectHCB`: Inserts and look-ups in the crit bit tree based hash. Look-ups are divided into locked and unlocked look-ups. Default: False. Context: Instance.
-* `CollectSHM `: Statistics about the shared memory log, a memory region to store log messages which is flushed to disk when full. Default: True. Context: Instance.
-* `CollectSM`: file (memory mapped file) storage statistics. Default: False. Context: Instance.
-* `CollectSMA`: malloc or umem (umem_alloc(3MALLOC) based) storage statistics. The umem storage component is Solaris specific. Default: False. Context: Instance.
-* `CollectSMS`: synth (synthetic content) storage statistics. This storage component is used internally only. Default: False. Context: Instance.
-* `CollectTotals`: Collects overview counters, such as the number of sessions created, the number of requests and bytes transferred. Default: False. Context: Instance.
-* `CollectUptime`: Server uptime. Default: False. Context: Instance.
-* `CollectWorkers`: Collect statistics about worker threads. Default: False. Context: Instance.
+* `CollectBackend <bool>` or `Backend <bool>`: Back-end connection statistics, such as successful, reused, and closed connections. Default: True. Context: Instance.
+* `CollectCache <bool>` or `Cache <bool>`: Cache hits and misses. Default: True. Context: Instance.
+* `CollectConnections <bool>` or `Connections <bool>`: Number of client connections received, accepted and dropped. Default: True. Context: Instance.
+* `CollectESI <bool>` or `ESI <bool>`: Edge Side Includes (ESI) parse statistics. Default: False. Context: Instance.
+* `CollectFetch <bool>` or `Fetch <bool>`: Statistics about fetches (HTTP requests sent to the backend). Default: False. Context: Instance.
+* `CollectHCB <bool>` or `HCB <bool>`: Inserts and look-ups in the crit bit tree based hash. Look-ups are divided into locked and unlocked look-ups. Default: False. Context: Instance.
+* `CollectSHM <bool>` or `SHM <bool>`: Statistics about the shared memory log, a memory region to store log messages which is flushed to disk when full. Default: True. Context: Instance.
+* `CollectSM <bool>` or `SM <bool>`: file (memory mapped file) storage statistics. Default: False. Context: Instance.
+* `CollectSMA <bool>` or `SMA <bool>`: malloc or umem (umem_alloc(3MALLOC) based) storage statistics. The umem storage component is Solaris specific. Default: False. Context: Instance.
+* `CollectSMS <bool>` or `SMS <bool>`: synth (synthetic content) storage statistics. This storage component is used internally only. Default: False. Context: Instance.
+* `CollectTotals <bool>` or `Totals <bool>`: Collects overview counters, such as the number of sessions created, the number of requests and bytes transferred. Default: False. Context: Instance.
+* `CollectUptime <bool>` or `Uptime <bool>`: Server uptime. Default: False. Context: Instance.
+* `CollectWorkers <bool>` or `Workers <bool>`: Collect statistics about worker threads. Default: False. Context: Instance.
 
 References
 ----------
