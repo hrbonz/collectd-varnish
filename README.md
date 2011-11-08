@@ -20,6 +20,7 @@ The configuration of the plugin follows collectd's varnish plugin in a pythonic 
         Import "collectd-varnish"
 
         <Module "collectd-varnish">
+            varnishstatBin "/usr/local/bin/varnishstat"
             <Instance>
                 CollectCache       true
                 CollectConnections true
@@ -64,6 +65,10 @@ For a very minimalistic configuration you can use the following, this configurat
             </Instance>
         </Module>
     </Plugin>
+
+The different options available are as follow :
+
+* `varnishstatBin`: specify the path of `varnishstat(1)` binary, defaults to `/usr/bin/varnishstat`. Context: Module
 
 References
 ----------

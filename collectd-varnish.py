@@ -2,6 +2,9 @@
 import collectd
 import socket
 
+# binary to call for varnishstat(1)
+varnishstat = '/usr/bin/varnishstat'
+
 # stats collection defaults, see
 # http://collectd.org/wiki/index.php/Plugin:Varnish#Available_statistics
 collects = {
@@ -29,11 +32,17 @@ instances = {
 # plugin configuration, get a dict of instances and stats per instance
 # > conf        object      collectd Config object
 def config(conf):
+    global varnishstat, instances
     # get through the nodes under <Module "...">
     for node in conf.children:
         # unknown configuration node
-        if node.key != "Instance":
+        if node.key != "Instance" and node.key != "varnishstatBin":
             collectd.warning("%s: Ignoring unknown node type (%s)" % (__name__, node.key))
+            continue
+
+        # change varnishstat binary path
+        if node.key == "varnishstatBin":
+            varnishstat = node.values[0]
             continue
 
         # if the instance is named, get the first given name
