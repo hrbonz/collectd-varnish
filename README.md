@@ -91,3 +91,4 @@ References
 * [collectd's python plugin](http://collectd.org/wiki/index.php/Plugin:Python)
 * [documentation of collectd's python plusgin](http://collectd.org/documentation/manpages/collectd-python.5.shtml)
 * [collectd's varnish plugin](http://collectd.org/wiki/index.php/Plugin:Varnish)
+* [varnish explanation of stats](https://www.varnish-cache.org/trac/wiki/StatsExplained)
